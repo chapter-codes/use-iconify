@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Iconify 2 Image",
+  "description": "Search for icons from Iconify by keyword and instantly copy them as <img> tags with direct URLs — no setup, scripts, or classes required.",
+  "version": "1.0.0",
+  "icons": {
+    
+  },
+  "action": {
+    "default_popup": "index.html"
+   
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://api.iconify.design/*",
+    "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"  
+    ],
+  "theme_color": "f0f0f0"
+}

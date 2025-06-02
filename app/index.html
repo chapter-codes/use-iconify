@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iconify image gen</title>
+     <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+       
+       
+       
+
+    </style>
+</head>
+<body  class="dark-theme  text-sm w-[400px] h-[500px] overflow-hidden ">
+    <section class="text-white  pt-4 px-4">
+        <div class="flex justify-between items-center w-full">
+            <form id="search-form" action="" class="grow flex items-center gap-2 max-w-3/5 p-2 border border-gray-500 rounded-md">
+                <img id="copy-" src="https://api.iconify.design/iconamoon/search-light.svg?color=%23ffffff" alt="">
+                <input type="search" name="search" class="w-full pl-2 outline-none" placeholder="Search">    
+            </form>
+            <div class="flex gap-1 items-center">
+                <p class="text-gray-400 text-sm">Theme</p>
+                <img   src="https://api.iconify.design/fluent/dark-theme-20-filled.svg?color=%23ffffff" alt="toggle thme" class="w-6">
+            </div>
+        </div>
+    </section>
+
+    <section class="px-4">
+        <div class="flex justify-between mt-6">
+            <div class="flex items-center gap-1">
+                <img src="https://api.iconify.design/tabler/history.svg?color=grey" alt="history" class="w-6">
+                <p class="text-sm text-gray-400 ">History</p>
+            </div>
+            <div class="relative flex items-center gap-1">
+                <p class="">Properties</p>
+                <img src="https://api.iconify.design/cuida/caret-down-outline.svg?color=white" alt="properties" class="w-6">
+            </div>
+        </div>
+    </section>
+
+    <section id="search-results" class="flex flex-col mt-6 mr-2">
+        <div class="relative flex gap-2 pl-4">
+            <h1 class="text-lg capitalize">search results</h1>
+            <h1 id="item-count" class="text-lg capitalize"></h1>
+            <p id="alert" class="absolute -top-1 left-1/2 -translate-x-1/2 hidden max-w-fit shadow shadow-[white] rounded  p-1 px-4">copied</p>
+        </div>
+           <!-- <div class="relative flex items-center justify-center size-14 bg-transparent-img">
+            <img src="https://api.iconify.design/basil/copy-solid.svg?color=white" alt="copy" class="absolute z-20 top-1 right-1  w-4" />
+            </div> -->
+        <div id="results" class="flex flex-wrap justify-center gap-1 overflow-y-auto h-[300px] w-full mr-2">
+            <div class="relative flex items-center justify-center h-full w-full">
+                <img src="./magnifying-glass-hand-investigation-exploration-concept.png" class=" relative left-10  h-full  object-cover">
+                <p id="typedText" class="absolute left-[5%] hidden capitalize text-3xl text-white text font-bold w-1/2">query your favourite icons from iconify</p>
+            </div>
+        </div>
+         <div id="spinner" class="w-full shrink-0 hidden justify-center "> <img src="https://api.iconify.design/gg/spinner-two.svg?color=white" class=" animate-spin w-10" /> </div>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
