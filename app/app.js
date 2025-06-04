@@ -3,6 +3,7 @@ import {getKeyword, searchKeyword, staticVariables} from './handleSearch.js';
 import { addIconsToUI, clearUI } from './pageMutations.js'
 import {loadIconsInfinitely} from "./infiniteScroll.js"
 import {handleCopy} from "./clipboard.js"
+import { handleDownload } from './download.js';
 import {storeSessionData, fetchKey} from './restore.js'
 
 
@@ -64,7 +65,7 @@ searchForm.onsubmit = async (e)=>{
 window.onclick  = (e)=>{
     console.log(e.target)
     handleCopy(e)
-    //handleDownload()
+    handleDownload(e)
 }
 
 
