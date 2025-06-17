@@ -61,14 +61,21 @@ searchForm.onsubmit = async (e)=>{
     loadIconsInfinitely(keyword)
 }
 
-
-window.onclick  = (e)=>{
+const resultsSection = document.getElementById('results')
+resultsSection.onclick  = (e)=>{
     console.log(e.target)
     handleCopy(e)
     handleDownload(e)
 }
 
 
-
+const syntaxToggle = document.getElementById('syntax-toggle')
+let useJsx = true
+syntaxToggle.onclick = ()=>{
+    console.log('toggle')
+    syntaxToggle.classList.toggle('no-slide')
+    syntaxToggle.classList.toggle('slide')
+    useJsx = !useJsx
+}
 
 // flip, rotate, height, width, color
