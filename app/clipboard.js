@@ -1,5 +1,6 @@
 // copies image tag to script.
 'use strict'
+import { state } from "./assets/js/appState.js"
 
 
 export const getUrlClass = (target)=>{
@@ -21,11 +22,14 @@ export const handleCopy = async  (e)=>{
     console.log('click copied', urlClass)
 
     if(!urlClass) return;
-    const imgTag =`<img src="https://api.iconify.design/${urlClass}.svg" />`
+    console.log('usejsx', state)
+    const copiedText = state.useJsx ? 
+        `<Icon icon=${urlClass.split("/").join(':')} color={" "} />` 
+        : `<img src="https://api.iconify.design/${urlClass}.svg" />`
     console.log('passed')
 
     try{
-        await navigator.clipboard.writeText(imgTag)
+        await navigator.clipboard.writeText(copiedText)
         const alert = document.getElementById('alert')
         alert.classList.replace('hidden', 'flex')
         alertTimeoutId = setTimeout(()=> alert.classList.replace('flex', 'hidden'), 1500)

@@ -2,6 +2,7 @@ import {typeWrite} from './typewriter.js'
 import {getKeyword, searchKeyword, staticVariables} from './handleSearch.js';
 import { addIconsToUI, clearUI } from './pageMutations.js'
 import {loadIconsInfinitely} from "./infiniteScroll.js"
+import {handleSyntaxToggle} from './assets/js/syntaxToggle.js'
 import {handleCopy} from "./clipboard.js"
 import { handleDownload } from './download.js';
 import {storeSessionData, fetchKey} from './restore.js'
@@ -55,7 +56,7 @@ restore()
 // handle form onsubmit
 const searchForm = document.querySelector('#search-form');
 searchForm.onsubmit = async (e)=>{
-    e.preventDefault()
+    e.preventDefault()  
     const keyword = getKeyword(e.target)
     loadIcons(keyword)
     loadIconsInfinitely(keyword)
@@ -69,13 +70,7 @@ resultsSection.onclick  = (e)=>{
 }
 
 
+// toggle to copy jsx or html
 const syntaxToggle = document.getElementById('syntax-toggle')
-let useJsx = true
-syntaxToggle.onclick = ()=>{
-    console.log('toggle')
-    syntaxToggle.classList.toggle('no-slide')
-    syntaxToggle.classList.toggle('slide')
-    useJsx = !useJsx
-}
+syntaxToggle.onclick = handleSyntaxToggle
 
-// flip, rotate, height, width, color

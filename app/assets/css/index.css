@@ -53,11 +53,11 @@ body {
     }
     
     #syntax-toggle.no-slide div{
-        @apply translate-x-0.5
+        @apply left-0.5
     }
 
-    #syntax-toggle.slide div{
-      @apply  -translate-x-0.5
+        #syntax-toggle.slide div{
+        @apply  left-[55%]
     }
     
-}
+}   

@@ -463,12 +463,10 @@ body {
     display: block;
   }
   #syntax-toggle.no-slide div {
-    --tw-translate-x: calc(var(--spacing) * 0.5);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
+    left: calc(var(--spacing) * 0.5);
   }
   #syntax-toggle.slide div {
-    --tw-translate-x: calc(var(--spacing) * -0.5);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
+    left: 55%;
   }
 }
 @property --tw-translate-x {

@@ -11,7 +11,7 @@ const formatIconsClass = (icons) =>{
 const resultHtml = (icons)=>{
     return icons.map(iconformattedclass=>{
              return ` <div class="relative flex items-center justify-center size-14 bg- bg-transparent-img">
-                <img src="https://api.iconify.design/${iconformattedclass}.svg?color=grey" alt="toggle thme" class="relative z-20 w-4/5 h-full">
+                <img src="https://api.iconify.design/${iconformattedclass}.svg?color=grey" alt="icon" class="relative z-20 w-4/5 h-full">
                 <img src="https://api.iconify.design/ic/round-download.svg?color=white" alt="copy" class="download url-${iconformattedclass} absolute z-20 top-1 left-1  w-4" />
                 <img src="https://api.iconify.design/basil/copy-solid.svg?color=white" alt="copy" class="copy url-${iconformattedclass} absolute z-20 top-1 right-1  w-4" />
             </div>
