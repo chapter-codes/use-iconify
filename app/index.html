@@ -41,9 +41,22 @@
                 </div>
                 html
             </div>
-            <div class="relative flex items-center gap-1">
-                <p class="">Properties</p>
-                <img src="https://api.iconify.design/cuida/caret-down-outline.svg?color=white" alt="properties" class="w-6">
+            <div class="relative ">
+                <button id="properties-button" class="flex items-center gap-1 rounded border px-1 py-0.5 ">
+                    <p class="">Properties</p>
+                    <img id="dropdown-caret" src="https://api.iconify.design/cuida/caret-down-outline.svg?color=white" alt="properties" class="w-4 transition-transform duration-300">
+                </button>
+                <form  id="properties-form" class="absolute z-50 top-full right-0 text-black text-sm mt-2  rounded bg-white overflow-hidden transition-[max-height] duration-300 hide-dropdown">
+                    <p class="text-sm text-orange-500 whitespace-nowrap p-1">*press 'Enter' after typing.</p>
+                 <div class="flex flex-col gap-1 p-2">
+                    <label for="color"  class="mt-1.5" >color <span > </span></label>
+                    <input type="text" name="color" id="color" class=" border w-full rounded-xs outline-none pl-0.5" placeholder="e.g: Hex, black,">
+                    <label for="height" class="mt-1.5">height <span class="text-gray-400 mt-2"> </span></label>
+                    <input type="text" name="height" id="height" class=" border w-full rounded-xs outline-none pl-0.5" placeholder="20: means 20px">
+                    <label for="color" class="mt-1.5">width <span class="text-gray-400 mt-2"> </span></label>
+                    <input type="text" name="width" id="width" class=" border w-full rounded-xs outline-none pl-0.5" placeholder="20: means 20px">
+                 </div>
+                </form>
             </div>
         </div>
     </section>

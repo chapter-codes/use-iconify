@@ -6,7 +6,10 @@ export const state = {
     enteredKeyword : '',
     defaultLimit : 64,
     restoredLimit : 0,
-    useJsx :true
+    useJsx :true,
+    color: null,
+    height: null,
+    width:null
 }
 
 

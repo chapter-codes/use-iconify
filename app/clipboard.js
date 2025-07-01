@@ -11,7 +11,17 @@ export const getUrlClass = (target)=>{
     const urlClass = copyClass.split('url-')[1]
     return urlClass
 }
-
+const formatCopiedText = (urlClass)=>{
+    const { useJsx, color, height, width } = state;
+    console.log(useJsx, color, height, state);
+    
+    const text = useJsx
+      ? `<Icon icon="${urlClass.split("/").join(':')}"${color ? ` color="${color}"` : ''}${height ? ` height="${height}"` : ''}${width ? ` width="${width}"` : ''} />`
+      : `<img src="https://api.iconify.design/${urlClass}.svg?${color ? `color=${color}&` : ''}${height ? `height=${height}&` : ''}${width ? `width=${width}` : ''}" />`;
+    
+    return text;
+    
+}
 let alertTimeoutId =  0 ;    
 export const handleCopy = async  (e)=>{
     clearTimeout(alertTimeoutId) // clear existing timeout each time the handler is called
@@ -22,11 +32,8 @@ export const handleCopy = async  (e)=>{
     console.log('click copied', urlClass)
 
     if(!urlClass) return;
-    console.log('usejsx', state)
-    const copiedText = state.useJsx ? 
-        `<Icon icon=${urlClass.split("/").join(':')} color={" "} />` 
-        : `<img src="https://api.iconify.design/${urlClass}.svg" />`
-    console.log('passed')
+    const copiedText = formatCopiedText(urlClass)
+    console.log('text', copiedText)
 
     try{
         await navigator.clipboard.writeText(copiedText)

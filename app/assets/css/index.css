@@ -56,8 +56,15 @@ body {
         @apply left-0.5
     }
 
-        #syntax-toggle.slide div{
+    #syntax-toggle.slide div{
         @apply  left-[55%]
+    }
+
+    .hide-dropdown{
+        @apply max-h-0
+    }
+    .show-dropdown{
+        @apply max-h-[500px]
     }
     
 }   

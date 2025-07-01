@@ -1,46 +1,46 @@
 // This module provides a function to search for icons using the Iconify API.
 'use strict';
-
+import { state } from './assets/js/appState.js';
 import { storeSessionData } from "./restore.js";
 
 
-export const staticVariables = {
-    prevLimit:0,
-    limit:0,
-    currentKeyword: '',
-    enteredKeyword : '',
-    defaultLimit : 64,
-    restoredLimit : 0
-}
+// export const state = {
+//     prevLimit:0,
+//     limit:0,
+//     currentKeyword: '',
+//     enteredKeyword : '',
+//     defaultLimit : 64,
+//     restoredLimit : 0
+// }
 
 // get the user input
 export const getKeyword = (form) => {
     const searchInput = Object.entries(form)[0][1];
     const keyword = searchInput.value.trim();
-    staticVariables.enteredKeyword = keyword.toLowerCase()
+    state.enteredKeyword = keyword.toLowerCase()
     return keyword? keyword : null;
 }
 
 
 //create limit search params for infinite scrolling
 const getLimitParams = (keyword)=>{
-    console.log('limit: ', staticVariables.limit, 'static: ', staticVariables.restoredLimit)
+    console.log('limit: ', state.limit, 'static: ', state.restoredLimit)
 
-    if(staticVariables.restoredLimit !== 0){
-        staticVariables.limit = staticVariables.restoredLimit
+    if(state.restoredLimit !== 0){
+        state.limit = state.restoredLimit
     }
-    else if(staticVariables.currentKeyword !== keyword.toLowerCase()){  // reset to default limit when keyword changes.
-        staticVariables.limit = staticVariables.defaultLimit
-        staticVariables.prevLimit = 0 
+    else if(state.currentKeyword !== keyword.toLowerCase()){  // reset to default limit when keyword changes.
+        state.limit = state.defaultLimit
+        state.prevLimit = 0 
     }
-    else if(staticVariables.limit + staticVariables.defaultLimit > 999){
-        staticVariables.limit = 999
+    else if(state.limit + state.defaultLimit > 999){
+        state.limit = 999
     }
     else{
-        staticVariables.limit += staticVariables.defaultLimit
+        state.limit += state.defaultLimit
     }
 
-    return staticVariables.limit
+    return state.limit
 }
 
 //search for icons with the keyword from iconify API
@@ -50,15 +50,15 @@ export const searchKeyword = async (keyword)=>{
     console.log('used', limit)
 
     if (!keyword ) return { message: 'please insert keyword',  status:400 };
-    if (limit == staticVariables.prevLimit) return  { message: 'max limit reached',  status:208 }; // max limit reached
+    if (limit == state.prevLimit) return  { message: 'max limit reached',  status:208 }; // max limit reached
     
-    const start = staticVariables.restoredLimit  !== 0 ? 0 : limit- staticVariables.defaultLimit
+    const start = state.restoredLimit  !== 0 ? 0 : limit- state.defaultLimit
 
     try {
         const json = await fetch(baseUrl + `?query=${encodeURIComponent(keyword)}&start=${start}&limit=${limit}`)
         const data = await json.json()
-        staticVariables.prevLimit = limit
-        staticVariables.restoredLimit = 0
+        state.prevLimit = limit
+        state.restoredLimit = 0
         storeSessionData(['limit', limit])
 
         return data.icons.length === 0 ?  { message: 'max limit reached',  status:208 } : data

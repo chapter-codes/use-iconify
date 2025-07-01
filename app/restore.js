@@ -1,4 +1,4 @@
-
+import { state } from "./assets/js/appState.js"
 
 export const storeSessionData = async ([key, value]) =>{
     const obj ={}
@@ -14,3 +14,18 @@ export const fetchKey = async (key)=>{
 //     const keyword = fetchKey('keyword')
 //     return keyword
 // }
+
+export const restoreState = ()=>{
+    const keys = Object.keys(state)
+    console.log(typeof keys)
+    keys.forEach(async (key)=>{
+        try{
+           const value = await fetchKey(key)
+           state[key] = value
+        }
+        catch(error){
+            console.error(error)
+        }
+    })
+
+}

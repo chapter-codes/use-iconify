@@ -1,6 +1,6 @@
 'use strict'
-import {staticVariables} from './handleSearch.js'
-const {currentKeyword, enteredKeyword} = staticVariables
+import { state } from './assets/js/appState.js';
+const {currentKeyword, enteredKeyword} = state
 
 
 //replace ";" in icon classname with '/'
@@ -24,9 +24,9 @@ export const addIconsToUI = (data)=>{
     const html = resultHtml(urlReadyIconClasses).join('') 
 
     console.log(enteredKeyword, currentKeyword)
-    if(staticVariables.enteredKeyword === staticVariables.currentKeyword) return  resultsSection.innerHTML +=html;
+    if(state.enteredKeyword === state.currentKeyword) return  resultsSection.innerHTML +=html;
     resultsSection.innerHTML = html  // overwrite
-    staticVariables.currentKeyword = staticVariables.enteredKeyword
+    state.currentKeyword = state.enteredKeyword
 }
 
 
@@ -34,8 +34,8 @@ export const clearUI = ()=>{
     const loadingSpinner = `<div class="w-full shrink-0 flex justify-center"> <img src="https://api.iconify.design/gg/spinner-two.svg?color=white" class="animate-spin w-10" /> </div>`
     const resultsSection = document.getElementById('results')
 
-    console.log('current', staticVariables.currentKeyword)
-    console.log('input', staticVariables.enteredKeyword)
-    if(staticVariables.enteredKeyword === staticVariables.currentKeyword) return;
+    console.log('current', state.currentKeyword)
+    console.log('input', state.enteredKeyword)
+    if(state.enteredKeyword === state.currentKeyword) return;
     resultsSection.innerHTML = loadingSpinner
 }
