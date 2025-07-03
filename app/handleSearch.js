@@ -59,7 +59,10 @@ export const searchKeyword = async (keyword)=>{
         const data = await json.json()
         state.prevLimit = limit
         state.restoredLimit = 0
+        const resultsCount = data.icons.length
+        state.resultsCount = resultsCount
         storeSessionData(['limit', limit])
+        storeSessionData(['resultsCount', resultsCount])
 
         return data.icons.length === 0 ?  { message: 'max limit reached',  status:208 } : data
     }catch (error) {

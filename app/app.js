@@ -1,3 +1,5 @@
+'use strict'
+
 import {typeWrite} from './typewriter.js'
 import {getKeyword, searchKeyword} from './handleSearch.js';
 import { addIconsToUI, clearUI } from './pageMutations.js'
@@ -6,15 +8,14 @@ import {handleSyntaxToggle} from './assets/js/syntaxToggle.js'
 import { handlePropertiesDropdown, handlePropertiesForm } from './assets/js/handleDropdown.js';
 import {handleCopy} from "./clipboard.js"
 import { handleDownload } from './download.js';
+import {storeSessionData} from './restore.js'
 import { state } from './assets/js/appState.js';
-import {storeSessionData, fetchKey, restoreState} from './restore.js'
-
 
 //start typewriting 
 typeWrite(document.getElementById('typedText')) 
 
 const loadIcons = async (keyword)=>{
-    storeSessionData(['keyword', keyword])
+    storeSessionData(['enteredKeyword', keyword])
     clearUI()
     const data = await searchKeyword(keyword)
     console.log(data)
@@ -25,26 +26,24 @@ const loadIcons = async (keyword)=>{
     }
     
 }
-
-// restore state 
-restoreState()
 const restoreApp = async ()=>{
- const {keyword, limit, scroll} = state
+    const {enteredKeyword, limit, scroll} = state
+    console.log('state', JSON.parse(JSON.stringify(state)), 'key', state.limit)
+    
+    if(!enteredKeyword) return;
 
-    if(!keyword) return;
-    state.enteredKeyword = keyword
     if(limit)  state.restoredLimit = Number(limit);
     console.log(limit, ' limit', state.limit)
 
     const search = document.querySelector("input[type='search']");
-    search.value = keyword
+    search.value = enteredKeyword
 
 
-    await loadIcons(keyword)
+    await loadIcons(enteredKeyword)
     const resultsSection = document.getElementById('results')
     console.log(scroll)
     resultsSection.scrollTo(0, Number(scroll))
-    setTimeout(()=> loadIconsInfinitely(keyword) ,2000)
+    setTimeout(()=> loadIconsInfinitely(enteredKeyword) ,2000)
 }
 restoreApp()
 
