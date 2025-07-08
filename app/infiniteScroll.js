@@ -14,7 +14,6 @@ const handleInfiniteLoading = async (keyword)=>{
 
   //save scrollposition
   storeSessionData(['scroll', resultsSection.scrollTop])
-  console.log(resultsSection.scrollTop)
 
   if (resultsSection.scrollTop + resultsSection.clientHeight >= resultsSection.scrollHeight) {
     const spinner= document.getElementById('spinner')

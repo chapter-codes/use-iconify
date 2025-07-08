@@ -13,6 +13,7 @@ export const  defaultState  = {
     width:null,
     scroll:0,
     resultsCount: 0,
+    darkMode: true,
 }
 
 

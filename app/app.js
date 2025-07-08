@@ -10,6 +10,12 @@ import {handleCopy} from "./clipboard.js"
 import { handleDownload } from './download.js';
 import {storeSessionData} from './restore.js'
 import { state } from './assets/js/appState.js';
+import { setTheme } from './assets/js/theme.js';
+
+
+
+// restore theme
+// state.darkMode ? setTheme('dark') : setTheme('light')
 
 //start typewriting 
 typeWrite(document.getElementById('typedText')) 
@@ -28,7 +34,7 @@ const loadIcons = async (keyword)=>{
 }
 const restoreApp = async ()=>{
     const {enteredKeyword, limit, scroll} = state
-    console.log('state', JSON.parse(JSON.stringify(state)), 'key', state.limit)
+    
     
     if(!enteredKeyword) return;
 
@@ -76,3 +82,14 @@ propertiesButton.onclick = handlePropertiesDropdown
 // hamdle proerties form
 const propertiesForm= document.getElementById('properties-form')
 propertiesForm.onchange = handlePropertiesForm  
+
+
+
+// change theme
+const themeButton = document.getElementById('theme-button')
+themeButton.onclick = ()=>{
+    const {darkMode} = state
+    darkMode ? setTheme('light') : setTheme('dark')
+    state.darkMode = !darkMode
+    storeSessionData(['darkMode', !darkMode])
+}

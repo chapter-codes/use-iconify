@@ -50,6 +50,7 @@ export const searchKeyword = async (keyword)=>{
     console.log('used', limit)
 
     if (!keyword ) return { message: 'please insert keyword',  status:400 };
+    // console.log('limit, prev', limit, prevLimit)
     if (limit == state.prevLimit) return  { message: 'max limit reached',  status:208 }; // max limit reached
     
     const start = state.restoredLimit  !== 0 ? 0 : limit- state.defaultLimit
