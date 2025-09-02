@@ -10,11 +10,18 @@ const formatIconsClass = (icons) =>{
 
 const resultHtml = (icons)=>{
     return icons.map(iconformattedclass=>{
-             return ` <div class="relative flex items-center justify-center size-14 bg- bg-transparent-img">
+             return `
+        <div class="relative group ">
+            <div id="tooltip" class="absolute z-50 top-0 left-1/2 -translate-x-1/2 -translate-y-[105%] text-white shadow shadow-gray-400 min-w-20 min-h-4 rounded-xl hidden group-hover:block mb-2 cursor-pointer">
+                <div class="min-w-20 min-h-4 h-full relative z-10 bg-black rounded-xl p-2 whitespace-nowrap"> ${iconformattedclass.replace('/', ':')}</div>
+                <div class="bg-black shadow shadow-gray-400 rotate-45 size-2.5 absolute -z-10 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"></div>
+            </div>
+            <div class="relative flex items-center justify-center size-14 icon-group">
                 <img src="https://api.iconify.design/${iconformattedclass}.svg?color=grey" alt="icon" class="relative z-20 w-4/5 h-full">
                 <img src="https://api.iconify.design/ic/round-download.svg?color=white" alt="copy" class="download url-${iconformattedclass} absolute z-20 top-1 left-1  w-4" />
                 <img src="https://api.iconify.design/basil/copy-solid.svg?color=white" alt="copy" class="copy url-${iconformattedclass} absolute z-20 top-1 right-1  w-4" />
             </div>
+        </div>    
         `})
 }
 
@@ -24,7 +31,7 @@ export const addIconsToUI = (data)=>{
     const html = resultHtml(urlReadyIconClasses).join('') 
 
     console.log(enteredKeyword, currentKeyword)
-    if(state.enteredKeyword === state.currentKeyword) return  resultsSection.innerHTML +=html;
+    if(state.enteredKeyword === state.currentKeyword) return  resultsSection.innerHTML += html;
     resultsSection.innerHTML = html  // overwrite
     state.currentKeyword = state.enteredKeyword
 }

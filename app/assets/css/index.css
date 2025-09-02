@@ -8,42 +8,42 @@ html{
 } 
 body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
 }
+
 @layer utilities{    
-    .bg-transparent-img{
+    .icon-group{
         border-width: 1px;
         border-color: black;
     }
     
-    .bg-transparent-img:hover::before {
+    .icon-group:hover::before {
         content: '';
         position: absolute;
         inset: 0;
         background-color: rgba(0, 0, 0, 0.6); /* Your overlay color */
         z-index: 1;
     }
-    .bg-transparent-img:hover{
+    .icon-group:hover{
         background-image: url('../images/transparent-bg.png');
         background-size: 350px;
         border:1px solid grey;
         border-radius:5px;
-        overflow: clip;
         position: relative;
+        overflow: clip;
     }
     
-    .bg-transparent-img .copy{
+    .icon-group .copy{
         display: none  ;
     }
     
-    .bg-transparent-img:hover .copy{
+    .icon-group:hover .copy{
         display: block  ;
     }
-    .bg-transparent-img .download{
+    .icon-group .download{
         display: none  ;
     }
     
-    .bg-transparent-img:hover .download{
+    .icon-group:hover .download{
         display: block  ;
     }
     
